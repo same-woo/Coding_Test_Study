@@ -1,19 +1,14 @@
-import java.util.Arrays;
-import java.util.Comparator;
-
 class Solution {
     public int[] solution(int[] emergency) {
         int[] answer = new int[emergency.length];
         
-        Integer[] indices = new Integer[emergency.length];
         for (int i = 0; i < emergency.length; i++) {
-            indices[i] = i;
-        }
-        
-        Arrays.sort(indices, Comparator.comparingInt(i -> emergency[i]));
-        
-        for (int i = 0; i < emergency.length; i++) {
-            answer[indices[i]] = emergency.length - i;
+            for (int j = 0; j < emergency.length; j++) {
+                if (emergency[i] < emergency[j]) {
+                    answer[i] += 1;
+                }
+            }
+            answer[i] += 1; //랭크니까 +1씩..
         }
         
         return answer;
